@@ -9,7 +9,8 @@ import json
 def make_request_batch(player_ids_batch):
     # url = 'http://192.168.49.2:30796/process_batch'
     # url = 'http://127.0.0.1:5000/recommend'
-    url = 'http://172.17.0.2:5000/recommend'
+    # url = 'http://localhost:5000/recommend'
+    url = 'https://7463-222-252-51-118.ngrok-free.app/recommend'
     data = {'playersObjectId': player_ids_batch}
     headers = {'Content-Type': 'application/json'}
     response = requests.get(url, data=json.dumps(data), headers=headers)
@@ -46,9 +47,9 @@ def read_player_ids(filename, batch_size, truncate=None):
  
 # Main function
 def main():
-    filename =  r'objectid_v2-2.txt'  # File containing player IDs, one per line
-    batch_size = 2 # Batch size for each request
-    truncate = 10
+    filename =  r'D:\\dtu\\backend\\DTU-repo\\src\\algorithm\\objectid_v2-2.txt'  # File containing player IDs, one per line
+    batch_size = 100 # Batch size for each request
+    truncate = 1000
     max_workers = 3
     
     # tạo ra các batch người chơi
@@ -69,7 +70,7 @@ def main():
         end_time = time.time()
         time_took = end_time - start_time
         # print(f'Time it took to process all requests with parallel processing: {time_took} seconds')
-        print(f'Time it took to process batch without parallel processing: {time_took} seconds')
+        print(f'Time it took to process batch with parallel processing: {time_took} seconds')
     # print(json_data 
 
 if __name__ == "__main__":
