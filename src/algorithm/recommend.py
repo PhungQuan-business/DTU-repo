@@ -6,6 +6,11 @@ from bson import ObjectId
 import threadpoolctl
 import json 
 from flask import Flask, request, jsonify
+from pymongo import MongoClient
+
+client = MongoClient("mongodb+srv://admin:admin123@cluster0.jmil5cr.mongodb.net/dtu?retryWrites=true&w=majority&appName=Cluster0")
+database = client["dtu"]
+result_collection = database["results"]
 
 # this line would resolve the runtime error 
 threadpoolctl.threadpool_limits(1)
@@ -59,10 +64,18 @@ def process_input():
     object_ids_batch = [ObjectId(id) for id in playersObjectId]
 
     result_dict = recommend(object_ids_batch)
-    print('-'*100)
-    print(result_dict)
-    print('-'*100)
+    result = []
     if result_dict:
+        
+        for key, value in result_dict.items():
+            result_str = {
+                "_id": ObjectId(str(key)),
+                "recommended_questions": [ObjectId(str(oid)) for oid in value]
+            }
+            result.append(result_str)
+    
+        result_collection.insert_many(result)
+    
         result_str = {str(key): [str(oid) for oid in value]
                 for key, value in result_dict.items()}
         json_result = json.dumps(result_str)
