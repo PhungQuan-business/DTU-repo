@@ -19,18 +19,18 @@ spec:
       containers:
       - name: rs-app-container
         # image: docker.io/library/rs-image-v1
-        image: docker.io/linhtinh819/rs-image-official:v2
+        image: docker.io/linhtinh819/rs-image:v2
         imagePullPolicy: IfNotPresent # must specify
         # command: ["sleep", "infinity"] 
-        resources:
-          requests:
-            cpu: "200m" # 100 milliCPU
-            memory: "100Mi" # 100 Mebibytes
-          # limits:
-          #   cpu: "150m" # 200 milliCPU
-          #   memory: "150Mi" # 200 Mebibytes
+        # resources:
+        #   requests:
+        #     cpu: "200m" # 100 milliCPU
+        #     memory: "100Mi" # 100 Mebibytes
+        #   # limits:
+        #   #   cpu: "150m" # 200 milliCPU
+        #   #   memory: "150Mi" # 200 Mebibytes
         ports:
         - containerPort: 5000
-      imagePullSecrets:
-        - name: regcred
+      # imagePullSecrets:
+      #   - name: regcred
 

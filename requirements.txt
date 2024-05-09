@@ -1,0 +1,7 @@
+implicit
+pymongo 
+numpy 
+pandas 
+scikit-learn 
+scipy
+flask

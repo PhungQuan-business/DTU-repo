@@ -5,12 +5,28 @@
 # docker run để tạo container
 
 FROM python:3.9
+
+# Set the working directory to /app
 WORKDIR /app
-COPY ./requirements.txt .
-RUN pip install -r requirements.txt
-COPY ./flask_api.py .
+
+# Copy the requirements.txt file to the container
+COPY requirements.txt .
+
+# Install the required packages
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the contents of the /src/algorithm directory to the /app directory
+COPY ./src/algorithm /app/algorithm
+
+# Change the working directory to /algorithm
+WORKDIR ./algorithm
+
+# Expose port 5000
 EXPOSE 5000
-CMD ["python", "flask_api.py"]
+
+# Run the recommend.py script
+CMD ["python", "recommend.py"]
+
 
 
 # Use a minimal base image
