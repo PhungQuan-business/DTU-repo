@@ -56,7 +56,7 @@ def recommend(player_ids):
     
     return result_dict
 
-@app.route('/recommend')
+# @app.route('/recommend')
 def process_input():
     data = request.json
     playersObjectId = data['playersObjectId']
