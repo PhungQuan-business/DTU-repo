@@ -19,7 +19,7 @@ spec:
       containers:
       - name: rs-app-container
         # image: docker.io/library/rs-image-v1
-        image: docker.io/linhtinh819/rs-image:v2
+        image: docker.io/linhtinh819/rs-image:v3
         imagePullPolicy: IfNotPresent # must specify
         # command: ["sleep", "infinity"] 
         # resources:
