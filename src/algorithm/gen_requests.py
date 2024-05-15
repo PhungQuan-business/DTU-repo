@@ -7,9 +7,9 @@ import json
 
 # Function to make request with player_ids batch
 def make_request_batch(player_ids_batch):
-    # url = 'http://192.168.49.2:30796/process_batch'
+    url = 'http://192.168.49.2:31453/recommend'
     # url = 'http://127.0.0.1:5000/recommend'
-    url = 'http://localhost:5000/recommend'
+    # url = 'http://localhost:5000/recommend'
     # url = 'https://7463-222-252-51-118.ngrok-free.app/recommend'
     data = {'playersObjectId': player_ids_batch}
     headers = {'Content-Type': 'application/json'}
@@ -38,6 +38,7 @@ def read_player_ids(filename, batch_size, truncate=None):
             player_ids = player_ids[:truncate]
     
     # Shuffle the player IDs to randomize
+    # Cái này đang không shuffle
     random.shuffle(player_ids)  
     
     # Split into batches
@@ -49,7 +50,7 @@ def read_player_ids(filename, batch_size, truncate=None):
 def main():
     filename =  r'./objectid_v2-2.txt'  # File containing player IDs, one per line
     batch_size = 2 # Batch size for each request
-    truncate = 10
+    truncate = 20
     max_workers = 3
     
     # tạo batch người chơi

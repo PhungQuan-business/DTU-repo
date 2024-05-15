@@ -2,5 +2,4 @@ src/algorithm/model.npz
 src/algorithm/dataset.pkl
 build/scripts/old-scripts
 Miniconda3-py39_24.3.0-0-Linux-x86_64.sh
-
-
+deploy.yaml
