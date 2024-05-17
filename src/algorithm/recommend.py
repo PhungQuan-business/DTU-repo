@@ -35,8 +35,8 @@ def recommend(data, n=10):
     result_dict = {}
 
     for i, player_ix in enumerate(player_ixs):
-        result_dict[dataset.get_player_id(player_ix)] = [
-            dataset.get_question_id(ix) for ix in ixs[i]]
+        result_dict[str(dataset.get_player_id(player_ix))] = [
+            str(dataset.get_question_id(ix)) for ix in ixs[i]]
 
     return result_dict
 
