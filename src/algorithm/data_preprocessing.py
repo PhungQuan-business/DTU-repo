@@ -147,8 +147,8 @@ class Dataset():
             data (list): A list of dictionaries where each dictionary contains 'player_id', 'major', 'rank, 'question_id', 'category', 'difficulty', 'time', and 'outcome'.
         """
         interactionData = pd.DataFrame.from_records(data)
-        interactionData['player_id'].map(lambda x: ObjectId(x))
-        interactionData['question_id'].map(lambda x: ObjectId(x))
+        interactionData['player_id'] = interactionData['player_id'].map(lambda x: ObjectId(x))
+        interactionData['question_id'] = interactionData['question_id'].map(lambda x: ObjectId(x))
 
         player_ids = interactionData['player_id'].unique().tolist()
         map_id_ix(player_ids, self.player_id_to_ix, self.ix_to_player_id)
