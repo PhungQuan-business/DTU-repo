@@ -9,8 +9,7 @@ from bson import ObjectId
 
 def initialCLient(username='admin', password='admin123'):
     # cái này đẩy vào configure
-    uri = f'mongodb+srv://{username}:{
-        password}@cluster0.jmil5cr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+    uri = f'mongodb+srv://{username}:{password}@cluster0.jmil5cr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
     client = MongoClient(uri, server_api=ServerApi('1'))
 
     try:
@@ -78,9 +77,13 @@ def calculate_sim_major_category(A, B):
 
 def map_id_ix(ids, id_to_ix=None, ix_to_id=None):
     if id_to_ix is not None and ix_to_id is not None:
-        for ix, id in enumerate(ids, start=len(id_to_ix)):
+        ix = len(id_to_ix)
+        for id in ids:
+            if id in id_to_ix:
+                continue
             id_to_ix[id] = ix
             ix_to_id[ix] = id
+            ix += 1
     else:
         id_to_ix = {}
         ix_to_id = {}
